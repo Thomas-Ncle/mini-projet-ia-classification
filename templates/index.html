@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Projet IA</title>
+</head>
+<body>
+<h1>Emotion Detection System</h1>
+<form action="/form/submit" method="post">
+    <textarea name="inputText" id="inputText" cols="30" rows="10">{{ input_text }}</textarea>
+    <br>
+    <button type="submit">Check for Emotion</button>
+</form>
+
+<div id="status"></div>
+
+{% if emotion and confidence %}
+<div class="result">
+    <h3>Result:</h3>
+    <p>Emotion: {{ emotion }}</p>
+    <p>Probability: {{ confidence }}%</p>
+</div>
+{% endif %}
+
+<!-- Inclure Socket.IO -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
+<!-- Inclure le fichier JavaScript séparé -->
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
